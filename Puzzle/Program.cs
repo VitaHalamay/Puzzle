@@ -12,10 +12,10 @@ namespace Puzzle
             string filePath = "..\\..\\..\\fragments.txt";
             Console.WriteLine("Loading fragments...");
             var fragments = LoadFragments(filePath);
-            Console.WriteLine("Starting calculations...");
+            Console.WriteLine("\nStarting calculations...");
             string longestChain = FindLongestChain(fragments);
             Console.WriteLine("\nCalculations completed.");
-            Console.WriteLine("Longest sequence: " + longestChain);
+            Console.WriteLine("\nLongest sequence: " + longestChain);
         }
 
         static List<string> LoadFragments(string filePath)
@@ -36,8 +36,8 @@ namespace Puzzle
                 for (int j = 0; j < fragments.Count; j++)
                 {
                     if (i == j) continue;
-                    string firstEnd = fragments[i].Substring(fragments[i].Length - 2);  // Останні дві цифри першого фрагмента
-                    string secondStart = fragments[j].Substring(0, 2); // Перші дві цифри другого фрагмента
+                    string firstEnd = fragments[i].Substring(fragments[i].Length - 2);  
+                    string secondStart = fragments[j].Substring(0, 2); 
                     if (firstEnd == secondStart)
                     {
                         if (!graph.ContainsKey(fragments[i])) graph[fragments[i]] = new List<string>();
@@ -76,7 +76,7 @@ namespace Puzzle
                 {
                     if (!visited.Contains(neighbor))
                     {
-                        var newChain = DFS(neighbor, graph, new HashSet<string>(visited), currentChain + neighbor.Substring(2)); // Додаємо тільки частину після перших двох цифр
+                        var newChain = DFS(neighbor, graph, new HashSet<string>(visited), currentChain + neighbor.Substring(2)); 
                         if (newChain.Length > longest.Length)
                         {
                             longest = newChain;
